@@ -1,0 +1,33 @@
+.alerts {
+    background-color: rgb(238, 183, 183);
+    color: red;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.alerts-success{
+    background-color: rgb(184, 245, 184);
+    color: green;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.container {   
+    padding: 1rem;  
+}
+
+form {   
+    border: 3px solid #f1f1f1;   
+}
+
+label, input[type=submit] {
+    width: 50%;
+    display: inline-block;
+}
+
+input[type=text], input[type=password], input[type = email] {      
+    display: inline-block;   
+    box-sizing: border-box;  
+    width: 50%;
+    margin-bottom: 1rem; 
+}  

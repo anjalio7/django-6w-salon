@@ -1,0 +1,30 @@
+{% extends 'sliced/layout.html' %}
+{% load static %}
+
+
+{% block body %}
+<div class="inner_page_agile">
+    <h3>Dashboard</h3>
+
+</div>
+
+<div class="container" style="margin-top: 3rem;">
+    <div class="row flex-wrap">
+        <div class="col-md-4 ">
+            <h3  style="padding: 2rem;" class="bg-success text-white text-center p-4">
+                Services - {{serviceCount}}
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3 style="padding: 2rem;" class="bg-success text-white text-center p-4">
+                SubServices - {{subServiceCount}}
+            </h3>
+        </div>
+        <div class="col-md-4    ">
+            <h3 style="padding: 2rem;" class="bg-success text-white text-center p-4">
+                Bookings - {{bookingCount}}
+            </h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

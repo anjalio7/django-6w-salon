@@ -1,0 +1,169 @@
+{% extends 'user_module/layout.html' %}
+{% load static %}
+
+{% block body %}
+<!-- banner -->
+<div class="inner_page_agile">
+	<h3>Cart</h3>
+	<p>Add Some Short Description</p>
+
+</div>
+<!--//banner -->
+<!--/w3_short-->
+<div class="services-breadcrumb_w3layouts">
+	<div class="inner_breadcrumb">
+
+		<ul class="short_w3ls" _w3ls>
+			<li><a href="index.html">Home</a><span>|</span></li>
+			<li>Cart</li>
+		</ul>
+	</div>
+</div>
+<!--//w3_short-->
+<!-- /inner_content -->
+<div class="inner_content_info_agileits">
+	<div class="container">
+		<div class="tittle_head_w3ls">
+			<h3 class="tittle">Cart </h3>
+		</div>
+		<div class="inner_sec_grids_info_w3ls">
+			<div class="col-md-12 job_info_left">
+				<div class="but_list">
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+						<ul id="myTab" class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab"
+									data-toggle="tab" aria-controls="home" aria-expanded="true">Cart</a></li>
+							<!-- <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Show Descriptions</a></li> -->
+						</ul>
+						<div id="myTabContent" class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+								{% if cart %}
+								<div class="row" style="margin-top: 1.5rem!important;">
+									<div class="col-sm-3">
+										<span></span>
+									</div>
+									<div class="col-sm-4"></div>
+									<div class="col-sm-1">
+										<span class="lead" style="font-size: 1rem!important;">Price</span>
+									</div>
+									<div class="col-sm-1">
+										<span class="lead" style="font-size: 1rem!important;">Quantity</span>
+									</div>
+									<div class="col-sm-1">
+										<span class="lead" style="font-size: 1rem!important;">Total</span>
+									</div>
+								</div>
+								<hr>
+
+								{% for i in cart %}
+								<div class="tab_grid">
+
+									<div class="row">
+										<div class="col-sm-3 loc_1">
+											<a href="location_single.html"><img src="{{i.item.image.url}}" alt=""></a>
+										</div>
+										<div class="col-sm-4">
+											<div class="jobs_right">
+												<!-- <div class="date">03 <span>Nov</span></div> -->
+												<div class="date_desc">
+													<h6 class="title"><a href="single.html">{{i.item.name}}</a></h6>
+													<span class="meta">{{i.item.description}}</span>
+												</div>
+
+												<div class="clearfix"> </div>
+											</div>
+										</div>
+										<div class="col-sm-1">
+											<h6 class="title"><a href="single.html">{{i.item.price}}/-</a></h6>
+										</div>
+										<div class="col-sm-1">
+											<h6 class="title"><a href="single.html">{{i.quant}}</a></h6>
+										</div>
+										<div class="col-sm-1">
+											<h6 class="title"><a href="single.html">{{i.total}}</a></h6>
+										</div>
+										<div class="col-sm-2">
+											<a href="{% url 'removeItemCart' i.item.id %}"
+												class="btn btn-danger">Remove</a>
+										</div>
+									</div>
+									<hr>
+									<div class="clearfix"> </div>
+								</div>
+								{% endfor %}
+
+								<div class="row" style="margin-top: 1.5rem!important;">
+									<div class="col-sm-3">
+										<span></span>
+									</div>
+									<div class="col-sm-4"></div>
+									<div class="col-sm-1">
+									</div>
+									<div class="col-sm-1"> </div>
+									<div class="col-sm-1">
+										<h4>Grand Total </h4>
+									</div>
+									<div class="col-sm-1">
+										<h4>{{checkout}} /-</h4>
+										<br>
+										<button type="button" class="btn btn-success btn-lg" data-toggle="modal"
+											data-target="#exampleModal">
+											Checkout
+										</button>
+									</div>
+								</div>
+
+								{% else %}
+								<div class="alert alert-danger mt-3">
+									{{msg}}
+								</div>
+								{% endif %}
+
+
+
+								<!-- Button trigger modal -->
+
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+									aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Booking</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<form action="{% url 'checkOut' %}" method="post">
+													{% csrf_token %}
+													<input type="date" class="form-control" name="dates">
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-success">Create
+															Booking</button>
+													</div>
+												</form>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 job_info_right">
+
+
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- //inner_content -->
+{% endblock %}

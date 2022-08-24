@@ -1,0 +1,64 @@
+{% extends 'sliced/layout.html' %}
+{% load static %}
+{% block body %}
+
+<!-- banner -->
+<div class="inner_page_agile">
+    <h3>Bookings</h3>
+    <!-- <p>Add Some Short Description</p> -->
+
+</div>
+<br><br>
+
+<div class="container shadow mb-4">
+    {% if data|length  > 0 %}
+    <table class="table table-striped table-bordered table-hover">
+
+        <br><br>
+
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>User Email</th>
+            <th>Sub Service</th>
+            <th>Price</th>
+            <th>Booking Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>
+                {{i.user_id.username}}
+            </td>
+            <td>{{i.user_id.email}}</td>
+            <td>{{i.subservice_id.name}}</td>
+            <th>{{i.subservice_id.price}}/-</th>
+            <td>{{i.bookingdate}}</td>
+            <td>
+                <span
+                    class="badge text-white {% if i.status == 'Accept'%} badge-success {% else %} badge-danger{% endif %}">{{i.status}}</span>
+            </td>
+            <td>
+                <div class="d-flex justify-content-between">
+                    {% if i.status == 'Pending' %}
+                    <a href="{% url 'updateOrder' i.id 'Accept' %}" class="btn btn-primary btn-sm">Accept</a>
+                    <a href="{% url 'updateOrder' i.id 'Reject' %}" class="btn btn-primary btn-sm"   >Reject</a>
+                    {% endif %}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% else %}
+        <div class="alert alert-danger mt-3">
+            No bookings yet.
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'sliced/layout.html' %}
+
+{% block body %}
+<!-- banner -->
+<div class="inner_page_agile">
+    <h3> Service</h3>
+    <!-- <p>Add Some Short Description</p> -->
+
+</div>
+<div class="inner_content_info_agileits">
+    <div class="container">
+        <div class="tittle_head_w3ls">
+            <h3 class="tittle">Edit Services</h3>
+        </div>
+
+        {% if msg %}
+            <div class="alert alert-danger mb-2 mt-4">
+                {{msg}}
+            </div>
+        {% endif %}
+        <div class="container">
+            <div class="w3layouts_mail_grid">
+                <div class="single">
+                    <form action ="{% url 'edittables' data.id %}" method="post">
+                        {% csrf_token %}
+                        <label for="">Service Name</label>
+        
+                            <input type="text" value="{{data.name}}" name="name" placeholder="Enter service">
+                            
+                            <button class="btn btn-warning d-block m-auto" type="submit">Edit</button>
+        
+                        </form>      
+                </div>
+                  
+            </div>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

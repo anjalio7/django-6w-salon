@@ -1,0 +1,51 @@
+{% extends 'sliced/layout.html' %}
+{% load static %}
+{% block body %}
+
+<!-- banner -->
+<div class="inner_page_agile">
+    <h3>LIST SERVICES</h3>
+    <!-- <p>Add Some Short Description</p> -->
+
+</div>
+<br><br>
+<center>
+    <div class="col-sm-12 mx-5">
+            <a class="" href="{% url 'add_services' %}"> <input type="button" value="Add Services" class="btn btn-success" name="add"></a>
+    </div> 
+</center>
+<br><br>
+<!-- <table border="4" bgcolor="" allign="center" cellpadding="5px" cellspacing="5px" width="50%" height="100px"> -->
+
+    <div class="container shadow mb-4">
+        <table class="table table-striped table-bordered table-hover">
+           
+            <br><br>
+    
+        <tr>
+            <th>ID</th>
+            <th>Services</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for i in data %}
+            <tr>
+               <td>{{i.id}}</td>
+               <td>{{i.name}}</td>
+            <td>
+                <a href="{% url 'edittables' i.id %}">
+                    <button class="btn btn-success">Edit</button>
+                </a>
+                
+            </td>
+            <td>
+                <a href="{% url 'deletetables' i.id %}">
+                    <button class="btn btn-success">Delete</button>
+                </a>
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+   
+{% endblock %}

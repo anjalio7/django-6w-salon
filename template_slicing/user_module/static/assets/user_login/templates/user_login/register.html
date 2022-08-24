@@ -1,0 +1,25 @@
+{% extends 'user_login/layout.html' %}
+
+{% block body %}
+
+    {% if message %}
+        <div class="alerts-success">
+            {{message}}
+        </div>
+    {% endif %}
+        <form action="{% url 'register' %}" method = "post">
+            {% csrf_token %}
+            <div class="container">
+                <label for="user">Username</label>
+                <input type="text" id = "user" name = "username"/>
+                <label for="email">Email</label>
+                <input type="email" id = "email" name = "email"/>
+                <label for="pass">Password</label>
+                <input type="password" id = "pass" name = "password"/>
+                <label for="confirm">Confirm Password</label>
+                <input type="password" id = "confirm" name = "confirmation">
+                <input type="submit" value = "Submit">
+            </div>           
+        </form>
+    
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'user_module/layout.html' %}
+{% load static %}
+{% block body %}
+
+<!-- banner -->
+<div class="inner_page_agile">
+    <h3>Bookings</h3>
+    <!-- <p>Add Some Short Description</p> -->
+
+</div>
+<br><br>
+
+<div class="container shadow mb-4">
+    {% if data|length  > 0 %}
+    <table class="table table-striped table-bordered table-hover">
+
+        <br><br>
+
+        <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Sub Service</th>
+            <th>Price</th>
+            <th>Booking Date</th>
+            <th>Status</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>
+                <img src="{{i.subservice_id.image.url}}" alt="" width="150px" height="150px">
+            </td>
+            <td>{{i.subservice_id.name}}</td>
+            <th>{{i.subservice_id.price}}/-</th>
+            <td>{{i.bookingdate}}</td>
+            <td>
+                <span
+                    class="badge text-white {% if i.status != 'Accept'%} badge-success {% else %} badge-danger{% endif %}">{{i.status}}</span>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% else %}
+        <div class="alert alert-danger mt-3">
+            No bookings yet.
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
